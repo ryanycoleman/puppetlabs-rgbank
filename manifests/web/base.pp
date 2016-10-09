@@ -61,6 +61,7 @@ define rgbank::web::base(
     file { "${install_dir_real}/wp-content/themes/rgbank":
       ensure  => link,
       target  => "${install_dir_real}/git/rgbank/src",
+      force   => true,
       require => [
         Vcsrepo["${install_dir_real}/git/rgbank"],
         Wordpress::Instance::App["rgbank_${name}"],
@@ -68,6 +69,11 @@ define rgbank::web::base(
     }
 
   } else {
+    file { "${install_dir_real}/wp-content/themes/rgbank":
+      ensure => directory,
+      force  => true,
+    }
+
     archive { "rgbank-build-${version}-${name}":
       ensure     => present,
       url        => $source,
@@ -76,6 +82,7 @@ define rgbank::web::base(
       src_target => '/tmp',
       require    => [
         Wordpress::Instance::App["rgbank_${name}"],
+        File["${install_dir_real}/wp-content/themes/rgbank"],
       ],
     }
   }
