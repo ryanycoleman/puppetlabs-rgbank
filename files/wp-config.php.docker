@@ -79,6 +79,12 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 
+$host = $_SERVER["HTTP_HOST"];
+$base_url = "http://" . $host;
+define('WP_HOME', $base_url);
+define('WP_SITEURL', $base_url);
+
+
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */
