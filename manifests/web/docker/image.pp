@@ -1,8 +1,8 @@
 class rgbank::web::docker::image {
   include dummy_service
 
-  $source = hiera('rgbank-build-path', 'master'),
-  $version = hiera('rgbank-build-version', 'https://github.com/puppetlabs/rgbank'),
+  $source = hiera('rgbank-build-path', 'master')
+  $version = hiera('rgbank-build-version', 'https://github.com/puppetlabs/rgbank')
   $install_dir = "/opt/rgbank-web"
   $listen_port = '80'
 
