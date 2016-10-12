@@ -1,9 +1,10 @@
 application rgbank (
-  $db_username = 'test',
-  $db_password = 'test',
-  $listen_port = '8060',
-  $use_docker  = false,
-  $lb_port     = '80',
+  $db_username  = 'test',
+  $db_password  = 'test',
+  $listen_port  = '8060',
+  $use_docker   = false,
+  $docker_image = 'ccaum/rgbank-web',
+  $lb_port      = '80',
 ) {
 
   $db_component = collect_component_titles($nodes, Rgbank::Db)[0] #Assume we only have one
@@ -20,10 +21,11 @@ application rgbank (
     $http = Http["rgbank-web-${comp_name}"]
 
     rgbank::web { $comp_name:
-      use_docker  => $use_docker,
-      listen_port => String($listen_port),
-      consume     => Database[$db_component],
-      export      => $http,
+      use_docker   => $use_docker,
+      docker_image => $docker_image,
+      listen_port  => String($listen_port),
+      consume      => Database[$db_component],
+      export       => $http,
     }
 
     #Return HTTP service resource

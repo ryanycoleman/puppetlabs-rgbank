@@ -9,15 +9,17 @@ define rgbank::web (
   $install_dir = undef,
   $image_tag = 'latest',
   $use_docker = false,
+  $docker_image = 'ccaum/rgbank-web',
 ) {
   if $use_docker {
     rgbank::web::docker { $name:
-      db_name     => $db_name,
-      db_user     => $db_user,
-      db_password => $db_password,
-      db_host     => $db_host,
-      image_tag   => $image_tag,
-      listen_port => $listen_port,
+      db_name      => $db_name,
+      db_user      => $db_user,
+      db_password  => $db_password,
+      db_host      => $db_host,
+      image_tag    => $image_tag,
+      listen_port  => $listen_port,
+      docker_image => $docker_image,
     }
   } else {
     rgbank::web::base { $name:
