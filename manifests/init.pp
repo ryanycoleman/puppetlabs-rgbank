@@ -22,7 +22,10 @@ application rgbank (
     rgbank::web { $comp_name:
       use_docker   => $use_docker,
       docker_image => $docker_image,
-      listen_port  => seeded_rand('65535', $comp_name),
+      listen_port  => $use_docker ? {
+        true  =>  seeded_rand('65535', $comp_name),
+        false => '80'
+      },
       consume      => Database[$db_component],
       export       => $http,
     }
