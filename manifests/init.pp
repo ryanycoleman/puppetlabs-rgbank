@@ -1,10 +1,10 @@
 application rgbank (
+  $listen_port  = seeded_rand('65535', $title),
+  $lb_port      = '80',
   $db_username  = 'test',
   $db_password  = 'test',
-  $listen_port  = '8060',
   $use_docker   = false,
   $docker_image = 'ccaum/rgbank-web',
-  $lb_port      = '80',
 ) {
 
   $db_component = collect_component_titles($nodes, Rgbank::Db)[0] #Assume we only have one
