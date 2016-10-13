@@ -1,5 +1,4 @@
 application rgbank (
-  $listen_port  = seeded_rand('65535', $title),
   $lb_port      = '80',
   $db_username  = 'test',
   $db_password  = 'test',
@@ -23,7 +22,7 @@ application rgbank (
     rgbank::web { $comp_name:
       use_docker   => $use_docker,
       docker_image => $docker_image,
-      listen_port  => String($listen_port),
+      listen_port  => seeded_rand('65535', $comp_name),
       consume      => Database[$db_component],
       export       => $http,
     }
