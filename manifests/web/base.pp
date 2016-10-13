@@ -108,9 +108,16 @@ define rgbank::web::base(
       default_vhost => false,
     }
     class { 'apache::mod::php': }
-    # wget for pulling wordpress theme from internet
-    # ruby for concat
-    package { ['wget', 'ruby']:
+  }
+
+  if ! defined(Package['wget']) {
+    package { 'wget':
+      ensure =>  installed,
+    }
+  }
+
+  if ! defined(Package['ruby']) {
+    package { 'ruby':
       ensure =>  installed,
     }
   }
