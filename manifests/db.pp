@@ -47,7 +47,7 @@ Rgbank::Db produces Database {
   user     => $user,
   host     => $ec2_metadata ? {
     undef   => $::networking['interfaces'][$::networking['interfaces'].keys[0]]['ip'],
-    default => $ec2_metadata['public-ipv4'],
+    default => $ec2_metadata['local-ipv4'],
   },
   password => $password,
   port     => $port,
