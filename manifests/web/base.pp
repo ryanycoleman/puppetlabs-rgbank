@@ -98,6 +98,24 @@ define rgbank::web::base(
     }
   }
 
+  include mysql::client
+  include mysql::bindings::php
+  include git
+
+  if ! defined(Class['apache']) {
+    class { 'apache':
+      mpm_module    => prefork,
+      default_vhost => false,
+    }
+    class { 'apache::mod::php': }
+    # wget for pulling wordpress theme from internet
+    # ruby for concat
+    package { ['wget', 'ruby']:
+      ensure =>  installed,
+    }
+  }
+
+
   apache::listen { $listen_port: }
 
   if (! defined(Apache::Vhost[$::fqdn])) {
