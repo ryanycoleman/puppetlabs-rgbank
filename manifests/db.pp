@@ -29,6 +29,17 @@ define rgbank::db (
       password_hash => mysql_password($password),
     }
   }
+  if ! defined(Class['mysql::server']) {
+    class { 'mysql::server':
+      override_options => {
+        'mysqld'       => {
+          'bind_address' => '0.0.0.0',
+          'port'         => $port,
+        },
+      },
+    }
+    include mysql::client
+  }
 }
 
 Rgbank::Db produces Database {
