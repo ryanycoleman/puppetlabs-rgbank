@@ -4,8 +4,8 @@ define rgbank::web::docker(
   $db_user,
   $db_password,
   $docker_image,
+  $listen_port,
   $image_tag = 'latest',
-  $listen_port = '80',
 ) {
   include docker
 
@@ -14,11 +14,9 @@ define rgbank::web::docker(
     docker::image { $docker_image: }
   }
 
-  $actual_port = seeded_rand('65535', $title)
-
   docker::run { $name:
     image   => $docker_image,
-    ports   => ["${actual_port}:80"],
+    ports   => ["${listen_port}:80"],
     env     => [
       "DB_NAME=${db_name}",
       "DB_PASSWORD=${db_password}",
