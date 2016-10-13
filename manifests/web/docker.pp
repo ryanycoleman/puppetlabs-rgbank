@@ -29,14 +29,14 @@ define rgbank::web::docker(
   }
 }
 
-Rgbank::Web produces Http {
+Rgbank::Web::Docker produces Http {
   name => $name,
   ip   => $::networking['interfaces'][$::networking['interfaces'].keys[0]]['ip'],
   port => $actual_port,
   host => $::hostname,
 }
 
-Rgbank::Web consumes Database {
+Rgbank::Web::Docker consumes Database {
   db_name     => $database,
   db_host     => $host,
   db_user     => $user,

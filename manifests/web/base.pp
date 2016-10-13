@@ -125,3 +125,19 @@ define rgbank::web::base(
     }
   }
 }
+Rgbank::Web::Base produces Http {
+  name => $name,
+  ip   => $::ipaddress,
+  port => $listen_port,
+  host => $::fqdn,
+  path => '/',
+}
+
+Rgbank::Web::Base consumes Database {
+  db_name     => $database,
+  db_host     => $host,
+  db_user     => $user,
+  db_password => $password,
+}
+
+Rgbank::Web consumes Vinfrastructure { }
