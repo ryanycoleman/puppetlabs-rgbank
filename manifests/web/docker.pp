@@ -3,9 +3,9 @@ define rgbank::web::docker(
   $db_host,
   $db_user,
   $db_password,
+  $docker_image,
   $image_tag = 'latest',
   $listen_port = '80',
-  $docker_image,
 ) {
   include docker
 
