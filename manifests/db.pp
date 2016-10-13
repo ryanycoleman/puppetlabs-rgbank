@@ -40,6 +40,10 @@ define rgbank::db (
     }
     include mysql::client
   }
+  cron {'mysqladmin_flush-hosts':
+    ensure  => present,
+    command => '/bin/mysqladmin flush-hosts',
+  }
 }
 
 Rgbank::Db produces Database {
