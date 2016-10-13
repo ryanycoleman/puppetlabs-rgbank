@@ -14,9 +14,11 @@ define rgbank::web::docker(
     docker::image { $docker_image: }
   }
 
+  $actual_port = seeded_rand('65535', $title)
+
   docker::run { $name:
     image   => $docker_image,
-    ports   => ["${listen_port}:80"],
+    ports   => ["${actual_port}:80"],
     env     => [
       "DB_NAME=${db_name}",
       "DB_PASSWORD=${db_password}",
@@ -30,7 +32,7 @@ define rgbank::web::docker(
 Rgbank::Web produces Http {
   name => $name,
   ip   => $::networking['interfaces'][$::networking['interfaces'].keys[0]]['ip'],
-  port => $listen_port,
+  port => $actual_port,
   host => $::hostname,
 }
 
