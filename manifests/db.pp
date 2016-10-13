@@ -1,10 +1,10 @@
 define rgbank::db (
   $user,
   $password,
+  $db_name         = "rgbank-${name}",
   $port            = '3306',
   $mock_sql_source = hiera('rgbank-mock-sql-path', 'https://raw.githubusercontent.com/puppetlabs/rgbank/master/rgbank.sql'),
 ) {
-  $db_name = "rgbank-${name}"
 
   file { "/var/lib/${db_name}":
     ensure => directory,
