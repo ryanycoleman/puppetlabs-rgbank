@@ -3,10 +3,10 @@ define rgbank::web::base(
   $source,
   $listen_port,
   $install_dir,
-  $db_name = undef,
-  $db_user = undef,
-  $db_password = undef,
-  $db_host = undef,
+  $db_name          = undef,
+  $db_user          = undef,
+  $db_password      = undef,
+  $db_host          = undef,
   $custom_wp_config = undef,
 ) {
 
@@ -114,7 +114,6 @@ define rgbank::web::base(
       ensure =>  installed,
     }
   }
-
 
   apache::listen { $listen_port: }
 
