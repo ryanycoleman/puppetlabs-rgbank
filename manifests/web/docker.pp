@@ -5,7 +5,8 @@ define rgbank::web::docker(
   $db_password,
   $docker_image,
   $listen_port,
-  $image_tag = 'latest',
+  $image_tag          = 'latest',
+  $docker_expose_port = hiera('rgbank-docker-expose-port', '80')
 ) {
   include docker
 
@@ -16,7 +17,7 @@ define rgbank::web::docker(
 
   docker::run { $name:
     image   => $docker_image,
-    ports   => ["${listen_port}:80"],
+    ports   => ["${listen_port}:${docker_expose_port}"],
     env     => [
       "DB_NAME=${db_name}",
       "DB_PASSWORD=${db_password}",
