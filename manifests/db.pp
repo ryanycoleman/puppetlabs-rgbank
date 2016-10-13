@@ -25,7 +25,7 @@ define rgbank::db (
 
   if ! defined(Mysql_user["${user}@localhost"]) {
     mysql_user { "${user}@localhost":
-      ensure        => 'present',
+      ensure        => present,
       password_hash => mysql_password($password),
     }
   }
