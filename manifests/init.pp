@@ -6,7 +6,7 @@ application rgbank (
   $docker_image = 'ccaum/rgbank-web',
 ) {
 
-  $db_component = collect_component_titles($nodes, Rgbank::Db)[0] #Assume we only have one
+  $db_component   = collect_component_titles($nodes, Rgbank::Db)[0] #Assume we only have one
   $web_components = collect_component_titles($nodes, Rgbank::Web)
   $load_component = collect_component_titles($nodes, Rgbank::Load)[0] #Assume we only have one
 

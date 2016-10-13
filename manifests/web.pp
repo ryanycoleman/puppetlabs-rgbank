@@ -4,11 +4,11 @@ define rgbank::web (
   $db_user,
   $db_password,
   $listen_port,
-  $version = hiera('rgbank-build-version', 'master'),
-  $source = hiera('rgbank-build-path', 'https://github.com/puppetlabs/rgbank'),
-  $install_dir = undef,
-  $image_tag = 'latest',
-  $use_docker = false,
+  $version      = hiera('rgbank-build-version', 'master'),
+  $source       = hiera('rgbank-build-path', 'https://github.com/puppetlabs/rgbank'),
+  $install_dir  = undef,
+  $image_tag    = 'latest',
+  $use_docker   = false,
   $docker_image = 'ccaum/rgbank-web',
 ) {
   if $use_docker {
