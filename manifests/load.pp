@@ -42,11 +42,6 @@ define rgbank::load (
         }
       }
     }
-    if ! defined(Package['ruby']) {
-      package { 'ruby':
-        ensure =>  installed,
-      }
-    }
   }
 
   firewall { "000 accept rgbank ${name} load balanced connections":

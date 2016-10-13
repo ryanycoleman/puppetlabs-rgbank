@@ -47,7 +47,7 @@ define rgbank::db (
 }
 
 Rgbank::Db produces Database {
-  database => "rgbank-${name}",
+  database => $db_name,
   user     => $user,
   host     => $ec2_metadata ? {
     undef   => $::networking['interfaces'][$::networking['interfaces'].keys[0]]['ip'],

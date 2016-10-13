@@ -110,18 +110,6 @@ define rgbank::web::base(
     class { 'apache::mod::php': }
   }
 
-  if ! defined(Package['wget']) {
-    package { 'wget':
-      ensure =>  installed,
-    }
-  }
-
-  if ! defined(Package['ruby']) {
-    package { 'ruby':
-      ensure =>  installed,
-    }
-  }
-
   apache::listen { $listen_port: }
 
   if (! defined(Apache::Vhost[$::fqdn])) {
