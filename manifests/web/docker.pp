@@ -28,19 +28,3 @@ define rgbank::web::docker(
     command => 'apachectl -DFOREGROUND',
   }
 }
-
-Rgbank::Web::Docker produces Http {
-  name => $name,
-  ip   => $::networking['interfaces'][$::networking['interfaces'].keys[0]]['ip'],
-  port => $actual_port,
-  host => $::hostname,
-}
-
-Rgbank::Web::Docker consumes Database {
-  db_name     => $database,
-  db_host     => $host,
-  db_user     => $user,
-  db_password => $password,
-}
-
-Rgbank::Web consumes Vinfrastructure { }

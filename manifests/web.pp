@@ -18,7 +18,7 @@ define rgbank::web (
       db_password  => $db_password,
       db_host      => $db_host,
       image_tag    => $image_tag,
-      listen_port  => $listen_port,
+      listen_port  => seeded_rand('65535', $title),
       docker_image => $docker_image,
     }
   } else {
@@ -60,19 +60,19 @@ define rgbank::web (
   }
 }
 
-# Rgbank::Web produces Http {
-#   name => $name,
-#   ip   => $::ipaddress,
-#   port => $listen_port,
-#   host => $::fqdn,
-#   path => '/',
-# }
-#
-# Rgbank::Web consumes Database {
-#   db_name     => $database,
-#   db_host     => $host,
-#   db_user     => $user,
-#   db_password => $password,
-# }
-#
-# Rgbank::Web consumes Vinfrastructure { }
+Rgbank::Web produces Http {
+  name => $name,
+  ip   => $::ipaddress,
+  port => $listen_port,
+  host => $::fqdn,
+  path => '/',
+}
+
+Rgbank::Web consumes Database {
+  db_name     => $database,
+  db_host     => $host,
+  db_user     => $user,
+  db_password => $password,
+}
+
+Rgbank::Web consumes Vinfrastructure { }
