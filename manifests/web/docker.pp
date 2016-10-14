@@ -12,7 +12,9 @@ define rgbank::web::docker(
 
   # Only need one instance of the image per docker host
   if ! defined(Docker::Image[$docker_image]) {
-    docker::image { $docker_image: }
+    docker::image { $docker_image:
+      image_tag => $image_tag,
+    }
   }
 
   docker::run { $name:
