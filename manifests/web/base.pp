@@ -102,14 +102,6 @@ define rgbank::web::base(
   include mysql::bindings::php
   include git
 
-  if ! defined(Class['apache']) {
-    class { 'apache':
-      mpm_module    => prefork,
-      default_vhost => false,
-    }
-    class { 'apache::mod::php': }
-  }
-
   apache::listen { $listen_port: }
 
   if (! defined(Apache::Vhost[$::fqdn])) {
