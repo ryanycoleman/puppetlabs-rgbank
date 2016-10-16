@@ -50,7 +50,8 @@ define rgbank::web::base(
       mode   => '0755',
     }
 
-    vcsrepo { "${install_dir_real}/git/rgbank":
+    vcsrepo { "rgbank":
+      path     => "${install_dir_real}/git/rgbank",
       ensure   => latest,
       provider => git,
       source   => $source,
