@@ -51,7 +51,7 @@ define rgbank::web::base(
     }
 
     vcsrepo { "${install_dir_real}/git/rgbank":
-      ensure   => present,
+      ensure   => latest,
       provider => git,
       source   => $source,
       revision => $version,
