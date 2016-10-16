@@ -3,3 +3,5 @@ $base_url = "http://" . $host;
 define('WP_HOME', $base_url);
 define('WP_SITEURL', $base_url);
 
+puppetconf = <%= scope['role::appserver::use_puppetconf_header'] || false %>
+
