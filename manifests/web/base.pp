@@ -167,6 +167,11 @@ define rgbank::web::base(
     fastcgi     => "127.0.0.1:9000",
     www_root    => $install_dir_real,
     fastcgi_script  => undef,
+    proxy_read_timeout => undef,
+    proxy_connect_timeout => undef, 
+    proxy_set_header => undef, 
+    proxy_hide_header => undef, 
+    proxy_pass_header => undef,
   }
 
   nginx::resource::server { "${::fqdn}-${name}":
