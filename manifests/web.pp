@@ -41,24 +41,24 @@ define rgbank::web (
       artifactory_server => $artifactory_server,
     }
 
-    if $::selinux == true {
-      if (! defined(Selinux::Port["allow-httpd-${listen_port}"])) {
-        selinux::port { "allow-httpd-${listen_port}":
-          context  => 'http_port_t',
-          port     => $listen_port,
-          protocol => 'tcp',
-          before   => [Rgbank::Web::Base[$name]],
-        }
-      }
+    # if $::selinux == true {
+    #   if (! defined(Selinux::Port["allow-httpd-${listen_port}"])) {
+    #     selinux::port { "allow-httpd-${listen_port}":
+    #       #context  => 'http_port_t',
+    #       port     => $listen_port,
+    #       protocol => 'tcp',
+    #       before   => [Rgbank::Web::Base[$name]],
+    #     }
+    #   }
 
-      if (! defined(Selinux::Boolean['httpd_can_network_connect'])) {
-        selinux::boolean { 'httpd_can_network_connect':
-          ensure     => true,
-          persistent => true,
-          before     => [Rgbank::Web::Base[$name]],
-        }
-      }
-    }
+    #   if (! defined(Selinux::Boolean['httpd_can_network_connect'])) {
+    #     selinux::boolean { 'httpd_can_network_connect':
+    #       ensure     => true,
+    #       persistent => true,
+    #       before     => [Rgbank::Web::Base[$name]],
+    #     }
+    #   }
+    # }
   }
 
   firewall { "000 accept rgbank web connections for ${name}":
